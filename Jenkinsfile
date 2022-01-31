@@ -4,14 +4,15 @@ pipeline {
     stages {
         stage('Deploy') {
             steps {
-                echo 'Probando servdor SFTP'
-                sh 'wget sftp://foo:pass@www.cristojaviergmsystem.com:9922/foo-home'
+                echo 'Despliegue de la aplicación'
+                sh 'sudo docker-compose up -d'
+                
             }
         }
-        stage('Build') {
+        stage('Test Integration') {
             steps {
-                echo 'Building application...'
-                sh 'sudo docker-compose up -d'
+                echo 'Comprobación del servidro SFTP'
+                sh 'wget sftp://foo:pass@www.cristojaviergmsystem.com:9922/foo-home'
             }
         }
     }
